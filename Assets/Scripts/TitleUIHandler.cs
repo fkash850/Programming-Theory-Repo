@@ -18,7 +18,7 @@ public class TitleUIHandler : MonoBehaviour
         }
         else
         {
-            Application.Quit(); // Original code to quit Unity player
+            Application.Quit(); // Quit Unity player if not in UnityEditor
         }
     }
 }

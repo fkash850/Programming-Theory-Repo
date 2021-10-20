@@ -8,7 +8,7 @@ public class ScaleObstacle : Obstacle
     private int maxScale = 15;
     private int growFactor = 1;
 
-    // POLYMORPHISM
+    // POLYMORPHISM - OVERRIDING
     public override void MoveDown()
     {
         base.MoveDown();

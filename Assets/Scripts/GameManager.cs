@@ -29,9 +29,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         MainManager.Instance.LoadPlayer();
-        StartGame();
+        player = MainManager.Instance.CurrentPlayer;
         playerText.SetText($"Player: {player}");
-
+        
+        StartGame();
+        
         skybox = GameObject.Find("Main Camera").GetComponent<Skybox>();
         int index = Random.Range(0, skyboxes.Count);
         skybox.material = skyboxes[index];
@@ -41,8 +43,7 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = true;
         StartCoroutine(SpawnOverTime());
-
-        player = MainManager.Instance.CurrentPlayer;
+        
         score = 0;
         UpdateScore(0);
 
@@ -68,17 +69,20 @@ public class GameManager : MonoBehaviour
         return randomPos;
     }
 
+    // ABSTRACTION
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
+    // ABSTRACTION
     public void GameOver()
     {
         isGameActive = false;
         gameOver.gameObject.SetActive(true);
 
+        // ENCAPSULATION
         if (score > MainManager.Instance.HighScore)
         {
             MainManager.Instance.SavePlayer(player, player, score);

@@ -11,7 +11,7 @@ public class RotateObstacle : Obstacle
         rotateDirection = Random.Range(1, 3);
     }
 
-    // POLYMORPHISM
+    // POLYMORPHISM - OVERRIDING
     public override void MoveDown()
     {
         base.MoveDown();

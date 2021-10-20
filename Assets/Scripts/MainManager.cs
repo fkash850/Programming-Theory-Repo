@@ -41,6 +41,7 @@ public class MainManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
+    // POLYMORPHISM - OVERLOADING
     public void SavePlayer(string player, string bestPlayer, int score)
     {
         SaveData data = new SaveData();
