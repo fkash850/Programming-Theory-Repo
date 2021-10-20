@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
         // Check if player collides with obstacle
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Game Over!");
-
             Destroy(gameObject);
             Destroy(other.gameObject);
             gameManager.GameOver();
