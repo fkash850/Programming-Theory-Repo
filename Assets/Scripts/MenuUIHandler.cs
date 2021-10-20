@@ -13,6 +13,8 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MainManager.Instance.LoadPlayer();
+
         if (MainManager.Instance != null && !MainManager.Instance.BestPlayer.Equals(""))
         {
             highScoreText.text = $"Current High Score: {MainManager.Instance.BestPlayer} - {MainManager.Instance.HighScore}";
