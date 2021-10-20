@@ -26,15 +26,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         MainManager.Instance.LoadPlayer();
-        StartGame(MainManager.Instance.Difficulty);
+        StartGame();
         playerText.SetText($"Player: {player}");
     }
 
-    public void StartGame(int difficulty)
+    public void StartGame()
     {
         isGameActive = true;
         StartCoroutine(SpawnOverTime());
-        spawnRate /= difficulty;
 
         player = MainManager.Instance.CurrentPlayer;
         score = 0;
