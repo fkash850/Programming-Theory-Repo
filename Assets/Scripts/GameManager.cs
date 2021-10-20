@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     private float spawnRangeX = 3.5f;
 
     public GameObject gameOver;
+    public TextMeshProUGUI playerText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    private string player;
     public int score = 0;
 
     public Button menuButton;
@@ -23,7 +25,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MainManager.Instance.LoadPlayer();
         StartGame();
+        playerText.SetText($"Player: {player}");
     }
 
     public void StartGame()
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnOverTime());
         // spawnRate /= difficulty;
 
+        player = MainManager.Instance.CurrentPlayer;
         score = 0;
         UpdateScore(0);
 
@@ -67,7 +72,17 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         gameOver.gameObject.SetActive(true);
-        highScoreText.gameObject.SetActive(true);
+
+        if (score > MainManager.Instance.HighScore)
+        {
+            MainManager.Instance.SavePlayer(player, player, score);
+            highScoreText.gameObject.SetActive(true);
+            highScoreText.SetText($"New High Score: {player} - {score}");
+        }
+        else
+        {
+            MainManager.Instance.SavePlayer(player);
+        }
     }
 
     public void ReturnToMenu()
