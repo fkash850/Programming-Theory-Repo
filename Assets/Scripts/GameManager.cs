@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> obstacles;
-    private float spawnRate = 1.5f;
+    private float spawnRate = 1.25f;
     private float spawnRangeX = 3.5f;
 
     public GameObject gameOver;
@@ -22,12 +22,19 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public bool isGameActive;
 
+    public List<Material> skyboxes;
+    private Skybox skybox;
+
     // Start is called before the first frame update
     void Start()
     {
         MainManager.Instance.LoadPlayer();
         StartGame();
         playerText.SetText($"Player: {player}");
+
+        skybox = GameObject.Find("Main Camera").GetComponent<Skybox>();
+        int index = Random.Range(0, skyboxes.Count);
+        skybox.material = skyboxes[index];
     }
 
     public void StartGame()

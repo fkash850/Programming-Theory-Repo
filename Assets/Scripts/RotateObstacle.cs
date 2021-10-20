@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // INHERITANCE
 public class RotateObstacle : Obstacle
 {
-    [SerializeField] private float rotationSpeed = 50;
+    [SerializeField] private float rotationSpeed = 60f;
     private float rotateDirection;
 
     private void Awake()
