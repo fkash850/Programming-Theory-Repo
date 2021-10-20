@@ -9,13 +9,6 @@ public class ScaleObstacle : Obstacle
     private int maxScale = 15;
     private int growFactor = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        MoveDown();
-        CheckBoundary();
-    }
-
     // POLYMORPHISM
     public override void MoveDown()
     {
