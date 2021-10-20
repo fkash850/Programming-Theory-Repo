@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -8,6 +6,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     public string CurrentPlayer = "";
     public string BestPlayer = "";
+    public int Difficulty = 1;
     public int HighScore = 0;
 
     private void Awake()
@@ -28,6 +27,7 @@ public class MainManager : MonoBehaviour
     {
         public string CurrentPlayer;
         public string BestPlayer;
+        public int Difficulty;
         public int HighScore;
     }
 
@@ -36,6 +36,20 @@ public class MainManager : MonoBehaviour
         SaveData data = new SaveData();
         data.CurrentPlayer = player;
         data.BestPlayer = BestPlayer;
+        data.Difficulty = Difficulty;
+        data.HighScore = HighScore;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void SavePlayer(int difficulty)
+    {
+        SaveData data = new SaveData();
+        data.CurrentPlayer = CurrentPlayer;
+        data.BestPlayer = BestPlayer;
+        data.Difficulty = difficulty;
         data.HighScore = HighScore;
 
         string json = JsonUtility.ToJson(data);
@@ -48,6 +62,7 @@ public class MainManager : MonoBehaviour
         SaveData data = new SaveData();
         data.CurrentPlayer = player;
         data.BestPlayer = bestPlayer;
+        data.Difficulty = Difficulty;
         data.HighScore = score;
 
         string json = JsonUtility.ToJson(data);
@@ -65,6 +80,7 @@ public class MainManager : MonoBehaviour
 
             CurrentPlayer = data.CurrentPlayer;
             BestPlayer = data.BestPlayer;
+            Difficulty = data.Difficulty;
             HighScore = data.HighScore;
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +19,7 @@ public class DifficultyButton : MonoBehaviour
     void SetDifficulty()
     {
         Debug.Log(button.gameObject.name + " was clicked");
+        MainManager.Instance.SavePlayer(difficulty);
         difficultyText.SetText($"Difficulty: {button.gameObject.name}");
     }
 }

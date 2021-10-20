@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         MainManager.Instance.LoadPlayer();
+        StartGame(MainManager.Instance.Difficulty);
         playerText.SetText($"Player: {player}");
     }
 
