@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> obstacles;
-    private float spawnRate = 2f;
+    private float spawnRate = 1.5f;
     private float spawnRangeX = 3.5f;
 
     public GameObject gameOver;
@@ -26,15 +26,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         MainManager.Instance.LoadPlayer();
-        StartGame();
         playerText.SetText($"Player: {player}");
     }
 
-    public void StartGame()
+    public void StartGame(int difficulty)
     {
         isGameActive = true;
         StartCoroutine(SpawnOverTime());
-        // spawnRate /= difficulty;
+        spawnRate /= difficulty;
 
         player = MainManager.Instance.CurrentPlayer;
         score = 0;
